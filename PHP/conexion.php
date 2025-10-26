@@ -1,7 +1,7 @@
 <?php
 $host = "ep-green-frost-123456-pooler.us-east-2.aws.neon.tech";
 $port = "5432";
-$dbname = "base_datos_mubc";
+$dbname = "neondb";
 $user = "obed";
 $password = "070911";
 
