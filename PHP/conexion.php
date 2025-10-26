@@ -1,7 +1,18 @@
 <?php
-$conexion = mysqli_connect("localhost", "obed", "070911", "mubc_base");
+$host = "ep-green-frost-123456-pooler.us-east-2.aws.neon.tech";
+$port = "5432";
+$dbname = "base_datos_mubc";
+$user = "obed";
+$password = "070911";
 
-if (!$conexion) {
-    die("Connection failed: " . mysqli_error());
+try {
+    // Conexión usando PDO
+    $conexion = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+
+    echo "✅ Conexión exitosa a la base de datos Neon.";
+} catch (PDOException $e) {
+    echo "❌ Error de conexión: " . $e->getMessage();
 }
 ?>
