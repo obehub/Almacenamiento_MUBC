@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Administrador</title>
-    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/admin.css">
-    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/agregar_admin.css">
+    <link rel="stylesheet" href="/CSS/admin.css">
+    <link rel="stylesheet" href="/CSS/agregar_admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
 <body>
     <header>
         <nav class="nav-container">
-            <img src="/Almacenamiento_MUBC/IMAGENES/MUBC.JPG" alt="Logo MUBC" class="logo">
+            <img src="/IMAGENES/MUBC.JPG" alt="Logo MUBC" class="logo">
             <label for="text">Movimiento Union y Bienestar Ciudadano</label>
             <ul class="nav-links">
                 <li><a href="admin.html"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Almacenamiento_MUBC/PHP/tabla.php"><i class="fas fa-users"></i> Inscritos</a></li>
-                <li><a href="/Almacenamiento_MUBC/agregar_admin.html"><i class="fas fa-user-plus"></i> Agregar administrador</a></li>
+                <li><a href="/PHP/tabla.php"><i class="fas fa-users"></i> Inscritos</a></li>
+                <li><a href="/agregar_admin.html"><i class="fas fa-user-plus"></i> Agregar administrador</a></li>
             </ul>
         </nav>
     </header>
@@ -26,7 +26,7 @@
         <section style="flex: 1; max-width: 400px;">
     <div class="login-container">
         <h2>Agregar Nuevo Administrador</h2>
-    <form id="formAdmin" action="/Almacenamiento_MUBC/PHP/add_admin.php" method="POST">
+    <form id="formAdmin" action="/PHP/add_admin.php" method="POST">
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" required>
             <label for="email">Email:</label>
@@ -75,5 +75,5 @@
         </div>
     </footer>
 
-<script src="/Almacenamiento_MUBC/JS/agregar_admin.js"></script>
+<script src="/JS/agregar_admin.js"></script>
 </html>

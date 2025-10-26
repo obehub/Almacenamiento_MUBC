@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('usuario', usuario);
         formData.append('email', email);
         formData.append('password', password);
-        fetch('/Almacenamiento_MUBC/PHP/add_admin.php', {
+        fetch('/PHP/add_admin.php', {
             method: 'POST',
             body: formData
         })

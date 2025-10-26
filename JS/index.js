@@ -20,7 +20,7 @@ $(document).ready(function() {
     e.preventDefault();
 
     $.ajax({
-      url: '/Almacenamiento_MUBC/PHP/verificar.php',
+      url: '/PHP/verificar.php',
       method: 'POST',
       data: {
         cedula: $('#cedula').val()

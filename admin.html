@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administración del MUBC</title>
-    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/admin.css">
+    <link rel="stylesheet" href="/CSS/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav class="nav-container">
-            <img src="/Almacenamiento_MUBC/IMAGENES/MUBC.JPG" alt="Logo MUBC" class="logo">
+            <img src="/IMAGENES/MUBC.JPG" alt="Logo MUBC" class="logo">
             <label for="text">Movimiento Union y Bienestar Ciudadano</label>
             <ul class="nav-links">
                 <li><a href="admin.html"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Almacenamiento_MUBC/PHP/tabla.php"><i class="fas fa-users"></i> Inscritos</a></li>
-                <li><a href="/Almacenamiento_MUBC/agregar_admin.html"><i class="fas fa-user-plus"></i> Agregar administrador</a></li>
+                <li><a href="/PHP/tabla.php"><i class="fas fa-users"></i> Inscritos</a></li>
+                <li><a href="/agregar_admin.html"><i class="fas fa-user-plus"></i> Agregar administrador</a></li>
             </ul>
         </nav>
     </header>
@@ -41,12 +41,12 @@
             <div class="card">
                 <h3><i class="fas fa-clipboard-list"></i> Gestionar Inscritos</h3>
                 <p>Visualiza y administra la lista completa de miembros inscritos en el MUBC.</p>
-                <a href="/Almacenamiento_MUBC/PHP/tabla.php" class="card-link">Ver Inscritos</a>
+                <a href="/PHP/tabla.php" class="card-link">Ver Inscritos</a>
             </div>
             <div class="card">
                 <h3><i class="fas fa-user-shield"></i> Administración</h3>
                 <p>Añade nuevos administradores para ayudar en la gestión del sistema.</p>
-                <a href="/Almacenamiento_MUBC/agregar_admin.html" class="card-link">Agregar Admin</a>
+                <a href="/agregar_admin.html" class="card-link">Agregar Admin</a>
             </div>
             <div class="card">
                 <h3><i class="fas fa-chart-bar"></i> Estadísticas</h3>
@@ -90,7 +90,7 @@
         // Función para obtener y mostrar las estadísticas
         function actualizarEstadisticas() {
             $.ajax({
-                url: '/Almacenamiento_MUBC/PHP/obtener_stats.php',
+                url: '/PHP/obtener_stats.php',
                 method: 'GET',
                 success: function(response) {
                     if (response.success) {

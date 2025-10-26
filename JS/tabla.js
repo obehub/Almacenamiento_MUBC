@@ -18,7 +18,7 @@ $(function(){
         $btn.prop('disabled', true).text('Eliminando...');
 
         $.ajax({
-            url: '/Almacenamiento_MUBC/PHP/eliminar_registro.php',
+            url: '/PHP/eliminar_registro.php',
             method: 'POST',
             data: { id: id },
             dataType: 'json'

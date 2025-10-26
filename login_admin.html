@@ -4,20 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Administrador MUBC</title>
-        <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/login_admin.css">
-        <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/responsive.css">
+        <link rel="stylesheet" href="/CSS/login_admin.css">
 </head>
 <body>
-    <div class="login-container">
-        <h2>Inicio de sesión Administrador</h2>
-        <!-- Menú hamburguesa para móviles -->
-        <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
-        <nav class="menu">
-            <a href="index.html">Inicio</a>
-            <a href="inscribete.html">Inscribirse</a>
-            <a href="login_admin.html">Admin</a>
-        </nav>
-        <form action="/Almacenamiento_MUBC/PHP/login_admin.php" method="POST">
+    
+        <form action="/PHP/login_admin.php" method="POST">
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" required>
             <label for="password">Contraseña:</label>

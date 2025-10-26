@@ -5,22 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro MUBC</title>
-    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/inscribete.css">
-    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/responsive.css">
+    <link rel="stylesheet" href="/CSS/inscribete.css">
 </head>
 <body>
-    <!-- Menú hamburguesa para móviles -->
-    <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
-    <nav class="menu">
-        <a href="index.html">Inicio</a>
-        <a href="inscribete.html">Inscribirse</a>
-        <a href="login_admin.html">Admin</a>
-    </nav>
+
     <div class="carta">
         <div class="cartita">
-    <img src="/Almacenamiento_MUBC/IMAGENES/MUBC.jpg" alt="#">
+    <img src="/IMAGENES/MUBC.jpg" alt="#">
     <p class="titulo">Inscribete en el MUBC</p>
-    <form action="PHP/registro.php" method="post" id="registro" class="form">
+    <form action="/PHP/registro.php" method="post" id="registro" class="form">
         <label for="nombre">Nombre*</label>
         <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre"><br>
         <label for="apellido">Apellidos*</label>  
@@ -40,7 +33,7 @@
     <p class="form-footer">¿Ya te registraste? <a href="index.html">Verificate</a></p>
         </div>
     </div>
-    <script src="/Almacenamiento_MUBC/JS/insc.js"></script>
+    <script src="/JS/insc.js"></script>
     
 </body>
 </html>
