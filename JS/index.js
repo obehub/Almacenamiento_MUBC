@@ -1,3 +1,16 @@
+import { neon } from '@netlify/neon';
+
+const sql = neon('postgresql://neondb_owner:npg_iQJB0qYwU4RC@ep-crimson-mode-ae1rzfg5-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require');
+
+async function probarConexion() {
+  try {
+    const result = await sql`SELECT NOW()`;
+    console.log('✅ Conexión exitosa:', result);
+  } catch (err) {
+    console.error('❌ Error en la conexión:', err);
+  }
+}
+
 $(document).ready(function() {
   // Mostrar alerta si viene ?inscrito=1 en la URL
   // Menú hamburguesa para móviles
@@ -14,28 +27,7 @@ $(document).ready(function() {
       window.history.replaceState({}, document.title, url.pathname + url.search);
     }
   }
-
-  // Handler AJAX para verificar cédula
-  $('#formVerificar').on('submit', function(e) {
-    e.preventDefault();
-
-    $.ajax({
-      url: '/PHP/verificar.php',
-      method: 'POST',
-      data: {
-        cedula: $('#cedula').val()
-      },
-      success: function(response) {
-        $('#mensaje').text(response.mensaje);
-        $('#mensaje').css('color', response.existe ? 'green' : 'red');
-      },
-      error: function() {
-        $('#mensaje').text('Error al verificar la cédula');
-        $('#mensaje').css('color', 'red');
-      }
-    });
-  });
-
+  
   // Formateo de cédula: XXX-XXXXXXX-X
   const input = document.getElementById('cedula');
   if (input) {
