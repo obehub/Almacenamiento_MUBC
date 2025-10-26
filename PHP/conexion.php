@@ -4,7 +4,7 @@ $host = 'ep-crimson-mode-ae1rzfg5-pooler.c-2.us-east-2.aws.neon.tech';
 $port = '5432';
 $dbname = 'neondb';
 $user = 'neondb_owner';
-$password = 'npg_iQjB8QqVwU4RC'; // tu contraseña real de Neon
+$password = 'npg_iQJB0qYwU4RC';
 
 try {
     // Conexión usando PDO con SSL obligatorio
