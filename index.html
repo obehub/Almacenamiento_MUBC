@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro MUBC</title>
+    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/estilos.css">
+    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/responsive.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Menú hamburguesa para móviles -->
+    <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="inscribete.html">Inscribirse</a>
+        <a href="login_admin.html">Admin</a>
+    </nav>
+    <div class="carta">
+        <div class="cartita">
+            <img src="/Almacenamiento_MUBC/IMAGENES/MUBC.jpg" alt="#">
+            <p class="titulo">Verificate en el MUBC</p>
+            <form id="formVerificar" action="/Almacenamiento_MUBC/PHP/verificar.php" method="post">
+                <label for="cedula">Cedula*</label>
+                <input type="text" id="cedula" name="cedula" required placeholder="Ej: 000-0000000-0" maxlength="13"><br><br>
+                <label for="mensaje"></label>
+                <span id="mensaje" style="display: block; margin: 10px 0; color: #666;"></span>
+                <button type="submit">Verificar</button>
+            </form>
+            <p class="form-footer">¿No te has registrado en el MUBC? <a href="inscribete.html">Registrate</a></p>
+        </div>
+    </div>
+    <script src="/Almacenamiento_MUBC/JS/index.js"></script>
+</body>
+</html>

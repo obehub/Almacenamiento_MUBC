@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración del MUBC</title>
+    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <img src="/Almacenamiento_MUBC/IMAGENES/MUBC.JPG" alt="Logo MUBC" class="logo">
+            <label for="text">Movimiento Union y Bienestar Ciudadano</label>
+            <ul class="nav-links">
+                <li><a href="admin.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="/Almacenamiento_MUBC/PHP/tabla.php"><i class="fas fa-users"></i> Inscritos</a></li>
+                <li><a href="/Almacenamiento_MUBC/agregar_admin.html"><i class="fas fa-user-plus"></i> Agregar administrador</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="welcome-section">
+            <h1>Bienvenido al Panel Administrativo del MUBC</h1>
+            <p>Gestiona las inscripciones y administra los usuarios del Ministerio Unidos Bajo Cristo de manera eficiente.</p>
+        </section>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="total-inscritos"></div>
+                <div class="stat-label">Miembros Inscritos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="nuevos-semana"></div>
+                <div class="stat-label">Nuevos esta semana</div>
+            </div>
+        </div>
+
+        <div class="action-cards">
+            <div class="card">
+                <h3><i class="fas fa-clipboard-list"></i> Gestionar Inscritos</h3>
+                <p>Visualiza y administra la lista completa de miembros inscritos en el MUBC.</p>
+                <a href="/Almacenamiento_MUBC/PHP/tabla.php" class="card-link">Ver Inscritos</a>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-user-shield"></i> Administración</h3>
+                <p>Añade nuevos administradores para ayudar en la gestión del sistema.</p>
+                <a href="/Almacenamiento_MUBC/agregar_admin.html" class="card-link">Agregar Admin</a>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-chart-bar"></i> Estadísticas</h3>
+                <p>Consulta las estadísticas y métricas importantes del movimiento.</p>
+                <a href="#" class="card-link">Ver Estadísticas</a>
+            </div>
+        </div>
+    </main>
+
+        <footer>
+        <div class="footer-container">
+            <!-- Información de contacto -->
+            <section class="contact-info">
+                <h3>Información de Contacto</h3>
+                <ul class="contact-list">
+                    <li>Teléfono: +1 829 898 0712</li>
+                    <li>Email: chavezobed35@gmail.com</li>
+                </ul>
+            </section>
+
+            <!-- Redes sociales -->
+            <section class="social-links">
+                <h3>Redes Sociales</h3>
+                <ul class="social-list">
+                    <li><a href="#" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+                </ul>
+            </section>
+
+            <!-- Copyright -->
+            <section class="copyright">
+                <p>&copy; 2025 Movimiento Union y Bienestar Ciudadano. Todos los derechos reservados.</p>
+            </section>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Función para obtener y mostrar las estadísticas
+        function actualizarEstadisticas() {
+            $.ajax({
+                url: '/Almacenamiento_MUBC/PHP/obtener_stats.php',
+                method: 'GET',
+                success: function(response) {
+                    if (response.success) {
+                        $('#total-inscritos').text(response.total_inscritos);
+                        $('#nuevos-semana').text(response.nuevos_semana);
+                    } else {
+                        $('#total-inscritos').text('Error');
+                        $('#nuevos-semana').text('Error');
+                    }
+                },
+                error: function() {
+                    $('#total-inscritos').text('Error');
+                    $('#nuevos-semana').text('Error');
+                }
+            });
+        }
+
+        // Llamar a la función cuando se carga la página
+        $(document).ready(function() {
+            actualizarEstadisticas();
+            // Actualizar cada 5 minutos
+            setInterval(actualizarEstadisticas, 300000);
+        });
+    </script>
+</body>
+</html>

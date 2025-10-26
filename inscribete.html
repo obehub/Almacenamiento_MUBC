@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro MUBC</title>
+    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/inscribete.css">
+    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/responsive.css">
+</head>
+<body>
+    <!-- Menú hamburguesa para móviles -->
+    <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="inscribete.html">Inscribirse</a>
+        <a href="login_admin.html">Admin</a>
+    </nav>
+    <div class="carta">
+        <div class="cartita">
+    <img src="/Almacenamiento_MUBC/IMAGENES/MUBC.jpg" alt="#">
+    <p class="titulo">Inscribete en el MUBC</p>
+    <form action="PHP/registro.php" method="post" id="registro" class="form">
+        <label for="nombre">Nombre*</label>
+        <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre"><br>
+        <label for="apellido">Apellidos*</label>  
+        <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido"><br>
+        <label for="cedula">Cedula*</label>
+        <input type="text" id="inputFormato" name="cedula" required placeholder="Ej: 000-0000000-0"><br>
+        <label for="telefono">Telefono*</label>
+        <input type="text" id="teleFormato" name="telefono" required placeholder="Ej: 000-000-0000"><br>
+        <label for="lugar">Lugar donde votas*</label>
+        <input type="text" id="lugar" name="lugar" required placeholder="Lugar"><br>
+        <label for="mesa">Mesa donde votas*</label>
+        <input type="text" id="mesa" name="mesa" required placeholder="Mesa"><br>
+        <label for="rf_por">Referido por*</label>
+        <input type="text" id="rf_por" name="rf_por" required placeholder="Quien te inscribe"><br>
+        <button type="submit">Enviar datos</button>
+    </form>
+    <p class="form-footer">¿Ya te registraste? <a href="index.html">Verificate</a></p>
+        </div>
+    </div>
+    <script src="/Almacenamiento_MUBC/JS/insc.js"></script>
+    
+</body>
+</html>

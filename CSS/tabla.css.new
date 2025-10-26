@@ -1,0 +1,232 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Controles de tabla */
+.table-controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.search-box {
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 300px;
+    transition: border-color 0.3s ease;
+}
+
+.search-box:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Tabla */
+.table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
+}
+
+.data-table th {
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.data-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.data-table tr:hover {
+    background-color: #f1f4f6;
+}
+
+/* Botones */
+.action-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.action-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+.action-button.success {
+    background-color: #2ecc71;
+}
+
+.action-button.success:hover {
+    background-color: #27ae60;
+}
+
+.action-button.edit {
+    background-color: #f1c40f;
+}
+
+.action-button.edit:hover {
+    background-color: #f39c12;
+}
+
+.action-button.delete {
+    background-color: #e74c3c;
+}
+
+.action-button.delete:hover {
+    background-color: #c0392b;
+}
+
+/* Paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.pagination a {
+    text-decoration: none;
+}
+
+.pagination .action-button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    background-color: #fff;
+    color: #3498db;
+    border: 1px solid #3498db;
+}
+
+.pagination .action-button:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.pagination .action-button.active {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .table-controls {
+        flex-direction: column;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .action-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .data-table {
+        font-size: 0.9em;
+    }
+}
+
+/* Estilos para las acciones en la tabla */
+.acciones {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+/* Estilos para los modales de SweetAlert2 */
+.form-sweet input {
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-sweet input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+/* Grupos de controles */
+.control-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+    .control-group {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .control-group > * {
+        width: 100%;
+    }
+}

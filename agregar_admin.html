@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Administrador</title>
+    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/admin.css">
+    <link rel="stylesheet" href="/Almacenamiento_MUBC/CSS/agregar_admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <img src="/Almacenamiento_MUBC/IMAGENES/MUBC.JPG" alt="Logo MUBC" class="logo">
+            <label for="text">Movimiento Union y Bienestar Ciudadano</label>
+            <ul class="nav-links">
+                <li><a href="admin.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="/Almacenamiento_MUBC/PHP/tabla.php"><i class="fas fa-users"></i> Inscritos</a></li>
+                <li><a href="/Almacenamiento_MUBC/agregar_admin.html"><i class="fas fa-user-plus"></i> Agregar administrador</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content" style="display: flex; gap: 2rem; align-items: flex-start;">
+        <section style="flex: 1; max-width: 400px;">
+    <div class="login-container">
+        <h2>Agregar Nuevo Administrador</h2>
+    <form id="formAdmin" action="/Almacenamiento_MUBC/PHP/add_admin.php" method="POST">
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Agregar Administrador</button>
+        </form>
+    </div>
+        </section>
+        <section style="flex: 2;">
+            <div style="background: var(--white); border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); padding: 2rem;">
+                <h1 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 2rem;">Panel de Agregar Administrador</h1>
+                <p>Utiliza el formulario para registrar un nuevo usuario administrador en el sistema del MUBC.</p>
+            </div>
+        </section>
+    </main>
+</body>
+
+        <footer>
+        <div class="footer-container">
+            <!-- Información de contacto -->
+            <section class="contact-info">
+                <h3>Información de Contacto</h3>
+                <ul class="contact-list">
+                    <li>Teléfono: +1 829 898 0712</li>
+                    <li>Email: chavezobed35@gmail.com</li>
+                </ul>
+            </section>
+
+            <!-- Redes sociales -->
+            <section class="social-links">
+                <h3>Redes Sociales</h3>
+                <ul class="social-list">
+                    <li><a href="#" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
+                </ul>
+            </section>
+
+            <!-- Copyright -->
+            <section class="copyright">
+                <p>&copy; 2025 Movimiento Union y Bienestar Ciudadano. Todos los derechos reservados.</p>
+            </section>
+        </div>
+    </footer>
+
+<script src="/Almacenamiento_MUBC/JS/agregar_admin.js"></script>
+</html>
