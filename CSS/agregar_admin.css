@@ -2,8 +2,11 @@
    ESTILOS GENERALES
 ============================== */
 :root {
-  --primary-color: #0b3d91;
-  --secondary-color: #f4f6f8;
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --text-color: #333;
+  --light-bg: #ecf0f1;
   --white: #ffffff;
 }
 
