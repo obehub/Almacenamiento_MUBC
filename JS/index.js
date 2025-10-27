@@ -14,7 +14,28 @@ $(document).ready(function() {
       window.history.replaceState({}, document.title, url.pathname + url.search);
     }
   }
-  
+
+  // Handler AJAX para verificar cédula
+  $('#formVerificar').on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      url: '/Almacenamiento_MUBC/PHP/verificar.php',
+      method: 'POST',
+      data: {
+        cedula: $('#cedula').val()
+      },
+      success: function(response) {
+        $('#mensaje').text(response.mensaje);
+        $('#mensaje').css('color', response.existe ? 'green' : 'red');
+      },
+      error: function() {
+        $('#mensaje').text('Error al verificar la cédula');
+        $('#mensaje').css('color', 'red');
+      }
+    });
+  });
+
   // Formateo de cédula: XXX-XXXXXXX-X
   const input = document.getElementById('cedula');
   if (input) {

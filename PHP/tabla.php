@@ -29,7 +29,7 @@ $total_paginas = ceil($total_registros / $registros_por_pagina);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Personas - MUBC</title>
-    <link rel="stylesheet" href="/CSS/tabla.css">
+    <link rel="stylesheet" href="../CSS/tabla.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -37,12 +37,12 @@ $total_paginas = ceil($total_registros / $registros_por_pagina);
 <body>
     <header>
         <nav class="nav-container">
-            <img src="/IMAGENES/MUBC.JPG" alt="Logo MUBC" class="logo">
+            <img src="../IMAGENES/MUBC.JPG" alt="Logo MUBC" class="logo">
             <label for="text">Movimiento Union y Bienestar Ciudadano</label>
             <ul class="nav-links">
-                <li><a href=".//admin.html"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/PHP/tabla.php"><i class="fas fa-users"></i> Inscritos</a></li>
-                <li><a href="/agregar_admin.html"><i class="fas fa-user-plus"></i> Agregar administrador</a></li>
+                <li><a href="../admin.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="tabla.php"><i class="fas fa-users"></i> Inscritos</a></li>
+                <li><a href="../agregar_admin.html"><i class="fas fa-user-plus"></i> Agregar administrador</a></li>
             </ul>
         </nav>
     </header>
