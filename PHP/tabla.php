@@ -170,7 +170,7 @@ $total_paginas = ceil($total_registros / $registros_por_pagina);
 
             <!-- Copyright -->
             <section class="copyright">
-                <p>&copy; 2025 Movimiento Union y Bienestar Ciudadano. Todos los derechos reservados.</p>
+                <p>&copy; 2025 Movimiento Union y Bienestar Ciudadano | Todos los derechos reservados.</p>
             </section>
         </div>
     </footer>
