@@ -1,35 +1,37 @@
+/* ==============================
+   ESTILOS GENERALES
+============================== */
 :root {
-  --primary-color: #2c3e50;
-  --secondary-color: #3498db;
-  --text-dark: #34495e;
-  --light-bg: #ecf0f1;
+  --primary-color: #0b3d91;
+  --secondary-color: #f4f6f8;
   --white: #ffffff;
 }
 
-/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-/* ===== BODY ===== */
 body {
-  background: var(--light-bg);
+  background: var(--secondary-color);
+  color: #333;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* ===== NAVBAR ===== */
+/* ==============================
+   NAVEGACIÓN SUPERIOR
+============================== */
 .nav-container {
-  background-color: var(--primary-color);
-  color: white;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  background: var(--primary-color);
   padding: 10px 20px;
+  color: var(--white);
   flex-wrap: wrap;
 }
 
@@ -39,158 +41,190 @@ body {
 }
 
 .nav-container label {
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1rem;
+  color: var(--white);
   margin-left: 10px;
 }
 
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 15px;
+  list-style: none;
+  gap: 1.2rem;
 }
 
 .nav-links li a {
-  color: white;
+  color: var(--white);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
   transition: color 0.3s;
 }
 
 .nav-links li a:hover {
-  color: var(--secondary-color);
+  color: #d4d9ff;
 }
 
-/* ===== BOTÓN HAMBURGUESA ===== */
+/* ==============================
+   HAMBURGER MENU
+============================== */
 .hamburger {
   display: none;
   flex-direction: column;
   cursor: pointer;
+  gap: 4px;
 }
 
 .hamburger span {
   height: 3px;
   width: 25px;
-  background: white;
-  margin: 4px 0;
-  border-radius: 5px;
-  transition: all 0.3s;
+  background: var(--white);
+  border-radius: 2px;
+  transition: 0.3s;
 }
 
-/* ===== CONTENIDO PRINCIPAL ===== */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ==============================
+   CONTENIDO PRINCIPAL
+============================== */
 .main-content {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 1.5rem;
   padding: 2rem;
+  flex-wrap: wrap;
   flex: 1;
 }
 
+.main-content section {
+  flex: 1;
+  min-width: 280px;
+}
+
+.main-content h1 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.main-content p {
+  line-height: 1.6;
+  color: #555;
+}
+
+/* ==============================
+   FORMULARIO ADMINISTRADOR
+============================== */
 .login-container {
   background: var(--white);
-  padding: 1.8rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  width: 100%;
+  padding: 1.5rem;
   max-width: 400px;
-  text-align: center;
+  width: 100%;
 }
 
 .login-container h2 {
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  text-align: left;
-}
-
-label {
-  color: var(--text-dark);
-  font-weight: bold;
-}
-
-input {
-  width: 100%;
-  padding: 0.8rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-input:focus {
-  outline: none;
-  border-color: var(--secondary-color);
-}
-
-button {
-  background-color: var(--secondary-color);
-  color: white;
-  padding: 0.9rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #2980b9;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 40px 20px;
   text-align: center;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.login-container label {
+  font-weight: 500;
+  display: block;
+  margin-top: 10px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 4px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login-container button {
+  margin-top: 1rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.login-container button:hover {
+  background: #082d6e;
+}
+
+/* ==============================
+   FOOTER
+============================== */
+footer {
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 2rem 1rem;
   margin-top: auto;
 }
 
 .footer-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
 }
 
 .footer-container h3 {
-  margin-bottom: 15px;
+  margin-bottom: 0.8rem;
 }
 
-.social-list {
+.footer-container ul {
   list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
 }
 
-.social-list a {
-  color: white;
+.footer-container li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-container a {
+  color: var(--white);
   text-decoration: none;
-  transition: opacity 0.3s;
 }
 
-.social-list a:hover {
-  opacity: 0.8;
+.footer-container a:hover {
+  text-decoration: underline;
 }
 
-/* ===== RESPONSIVE ===== */
+.copyright {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
     width: 100%;
     flex-direction: column;
-    background-color: var(--primary-color);
-    padding: 10px 0;
+    background: var(--primary-color);
     text-align: center;
+    padding: 10px 0;
   }
 
   .nav-links.active {
@@ -201,15 +235,24 @@ footer {
     display: flex;
   }
 
-  .main-content {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+  .nav-container label {
+    font-size: 0.9rem;
+    text-align: center;
+    flex: 1 1 100%;
+    margin-top: 5px;
   }
 
-  .login-container,
-  .main-content > section:last-child {
-    max-width: 90%;
-    width: 100%;
+  .main-content {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .login-container {
+    max-width: 100%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
   }
 }
