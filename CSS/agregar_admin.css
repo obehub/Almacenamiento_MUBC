@@ -1,3 +1,13 @@
+/* ==== Variables de color ==== */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --text-dark: #34495e;
+    --light-bg: #ecf0f1;
+    --white: #ffffff;
+}
+
+/* ==== Reset general ==== */
 * {
     margin: 0;
     padding: 0;
@@ -5,11 +15,16 @@
     font-family: 'Arial', sans-serif;
 }
 
-
+/* ==== Fondo general ==== */
 body {
     background: var(--light-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
 
+/* ==== Contenedor del formulario ==== */
 .login-container {
     background: var(--white);
     padding: 2rem;
@@ -17,16 +32,19 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     width: 100%;
     max-width: 400px;
-    margin-bottom: 2rem;
+    margin: 3rem auto 2rem;
+    animation: fadeIn 0.5s ease forwards;
 }
 
+/* ==== Título ==== */
 h2 {
-    color: #2c3e50;
+    color: var(--primary-color);
     text-align: center;
     margin-bottom: 2rem;
     font-size: 1.8rem;
 }
 
+/* ==== Formulario ==== */
 form {
     display: flex;
     flex-direction: column;
@@ -34,7 +52,7 @@ form {
 }
 
 label {
-    color: #34495e;
+    color: var(--text-dark);
     font-weight: bold;
     margin-bottom: 0.3rem;
 }
@@ -49,12 +67,13 @@ input {
 
 input:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: var(--secondary-color);
 }
 
+/* ==== Botón ==== */
 button {
-    background-color: #3498db;
-    color: white;
+    background-color: var(--secondary-color);
+    color: var(--white);
     padding: 1rem;
     border: none;
     border-radius: 5px;
@@ -69,7 +88,7 @@ button:hover {
     background-color: #2980b9;
 }
 
-/* Efectos de animación */
+/* ==== Animación ==== */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -81,150 +100,87 @@ button:hover {
     }
 }
 
-.login-container {
-    animation: fadeIn 0.5s ease forwards;
+/* ==== Footer ==== */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    margin-top: auto;
 }
 
-footer {
-            background-color: var(--primary-color);
-            margin-top: 180px;
-            color: white;
-            padding: 40px 20px;
-            font-family: Arial, sans-serif;
-        }
+/* Contenedor principal del footer */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
 
-        /* Contenedor principal */
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            gap: 30px;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        }
+/* Información de contacto */
+.contact-info h3,
+.social-links h3 {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
 
-        /* Información de contacto */
-        .contact-info h3 {
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
+.contact-list,
+.social-list {
+    list-style: none;
+    padding: 0;
+}
 
-        .contact-list {
-            list-style: none;
-        }
+.contact-list li {
+    margin-bottom: 15px;
+}
 
-        .contact-list li {
-            margin-bottom: 20px;
-        }
+/* Redes sociales */
+.social-list {
+    display: flex;
+    gap: 20px;
+}
 
-        /* Redes sociales */
-        .social-links h3 {
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
+.social-list a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
 
-        .social-list {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
+.social-list a:hover {
+    opacity: 0.8;
+}
 
-        .social-list a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
+/* Copyright */
+.copyright {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-        .social-list a:hover {
-            opacity: 0.8;
-        }
+/* ==== Responsividad ==== */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 1.5rem;
+        margin: 2rem 1rem;
+    }
 
-        /* Copyright */
-        .copyright {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    h2 {
+        font-size: 1.6rem;
+    }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .social-list {
-                justify-content: center;
-            }
-        }
+    input, button {
+        font-size: 0.95rem;
+    }
 
-        footer {
-            background-color: var(--primary-color);
-            margin-top: 180px;
-            color: white;
-            padding: 40px 20px;
-            font-family: Arial, sans-serif;
-        }
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 
-        /* Contenedor principal */
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            gap: 30px;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        }
-
-        /* Información de contacto */
-        .contact-info h3 {
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
-
-        .contact-list {
-            list-style: none;
-        }
-
-        .contact-list li {
-            margin-bottom: 20px;
-        }
-
-        /* Redes sociales */
-        .social-links h3 {
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
-
-        .social-list {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-list a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .social-list a:hover {
-            opacity: 0.8;
-        }
-
-        /* Copyright */
-        .copyright {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .social-list {
-                justify-content: center;
-            }
-        }
+    .social-list {
+        justify-content: center;
+    }
+}
