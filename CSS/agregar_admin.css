@@ -3,10 +3,11 @@
 ============================== */
 :root {
   --primary-color: #2c3e50;
-  --secondary-color: #f4f6f8;
+  --secondary-color: #3498db;
   --accent-color: #e74c3c;
   --text-color: #333;
   --light-bg: #ecf0f1;
+  --white: #ffffff;
 }
 
 * {
@@ -17,7 +18,7 @@
 }
 
 body {
-  background: var(--secondary-color);
+  background: var(--white);
   color: #333;
   display: flex;
   flex-direction: column;
