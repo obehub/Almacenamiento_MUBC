@@ -20,27 +20,18 @@ $(document).ready(function() {
     e.preventDefault();
 
     $.ajax({
-      url: `${API_URL}/verificar.php`, // 🔹 apunta a tu backend en Railway
+      url: './PHP/verificar.php',
       method: 'POST',
-      dataType: 'json',
-      data: { cedula },
-      success: function(response) {
-        if (response.admin) {
-          $('#mensaje').text('Redirigiendo al acceso de administrador...').css('color', 'blue');
-          setTimeout(() => {
-            window.location.href = response.redirect || 'login_admin.html';
-          }, 1000);
-        } else if (response.existe) {
-          $('#mensaje').text(response.mensaje).css('color', 'green');
-        } else if (response.error) {
-          $('#mensaje').text(response.mensaje).css('color', 'red');
-        } else {
-          $('#mensaje').text(response.mensaje).css('color', 'red');
-        }
+      data: {
+        cedula: $('#cedula').val()
       },
-      error: function(xhr, status, error) {
-        console.error("Error:", status, error);
-        $('#mensaje').text('Error al verificar la cédula.').css('color', 'red');
+      success: function(response) {
+        $('#mensaje').text(response.mensaje);
+        $('#mensaje').css('color', response.existe ? 'green' : 'red');
+      },
+      error: function() {
+        $('#mensaje').text('Error al verificar la cédula');
+        $('#mensaje').css('color', 'red');
       }
     });
   });
