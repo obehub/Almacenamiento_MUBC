@@ -16,7 +16,7 @@ $(document).ready(function() {
   }
 
   // --- URL base del backend en Railway ---
-  const API_URL = "https://mubc-production.up.railway.app";
+  const API_URL = "https://bd-production-38ba.up.railway.app/";
 
 
   // --- Handler AJAX para verificar cédula ---
