@@ -1,55 +1,43 @@
 <?php 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require 'conn.php';
     
-    // Verificar si se recibió la cédula
-    if(isset($_POST['cedula'])) {
-        // Obtener y sanitizar la cédula
+    if (isset($_POST['cedula'])) {
         $cedula = mysqli_real_escape_string($conexion, $_POST['cedula']);
-        
-        // Crear respuesta base
         $response = array();
 
-        // --- 1️⃣ Verificar si la cédula está en la tabla de administradores ---
+        // --- Verificar si está en la tabla de administradores ---
         $query_admin = "SELECT * FROM administradores WHERE cedula = '$cedula' LIMIT 1";
         $resultado_admin = mysqli_query($conexion, $query_admin);
 
         if (mysqli_num_rows($resultado_admin) > 0) {
-            // Si es administrador, redirigir al login de admin
+            // Si es administrador
             $response['admin'] = true;
             $response['mensaje'] = "Redirigiendo al acceso de administrador...";
-            $response['redirect'] = 'login_admin.html';
+            $response['redirect'] = 'admin_login.html';
         } else {
-            // --- 2️⃣ Si no es admin, verificar si está en la tabla de registro ---
+            // Verificar si está en la tabla de registro normal
             $query_registro = "SELECT * FROM registro WHERE cedula = '$cedula' LIMIT 1";
             $resultado_registro = mysqli_query($conexion, $query_registro);
 
             if (mysqli_num_rows($resultado_registro) > 0) {
-                // La cédula existe en registro
                 $response['existe'] = true;
                 $response['mensaje'] = "La cédula ya está registrada en el MUBC.";
             } else {
-                // La cédula no existe en ninguna tabla
                 $response['existe'] = false;
                 $response['mensaje'] = "La cédula no está registrada en el MUBC.";
             }
         }
 
-        // Enviar respuesta JSON
-        header('Content-Type: application/json');
         echo json_encode($response);
     } else {
-        // Error: no se recibió cédula
-        $response = array(
+        echo json_encode([
             'error' => true,
             'mensaje' => 'No se recibió ninguna cédula para verificar'
-        );
-        
-        header('Content-Type: application/json');
-        echo json_encode($response);
+        ]);
     }
-    
+
     mysqli_close($conexion);
 }
 ?>
+

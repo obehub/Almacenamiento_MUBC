@@ -16,26 +16,32 @@ $(document).ready(function() {
   }
   
   // --- Handler AJAX para verificar cédula ---
-  $('#formVerificar').on('submit', function(e) {
-    e.preventDefault();
+$('#formVerificar').on('submit', function(e) {
+  e.preventDefault();
 
-    $.ajax({
-      url: './PHP/verificar.php',
-      method: 'POST',
-      data: {
-        cedula: $('#cedula').val()
-      },
-      success: function(response) {
+  $.ajax({
+    url: './PHP/verificar.php',
+    method: 'POST',
+    dataType: 'json',
+    data: { cedula: $('#cedula').val() },
+    success: function(response) {
+      console.log(response); // para depurar
+
+      if (response.admin) {
+        alert(response.mensaje);
+        // Redirigir automáticamente
+        window.location.href = response.redirect;
+      } else {
         $('#mensaje').text(response.mensaje);
         $('#mensaje').css('color', response.existe ? 'green' : 'red');
-      },
-      error: function() {
-        $('#mensaje').text('Error al verificar la cédula');
-        $('#mensaje').css('color', 'red');
       }
-    });
+    },
+    error: function() {
+      $('#mensaje').text('Error al verificar la cédula');
+      $('#mensaje').css('color', 'red');
+    }
   });
-
+});
   // --- Formateo automático de cédula ---
   const input = document.getElementById('cedula');
   if (input) {
