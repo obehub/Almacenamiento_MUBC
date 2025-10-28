@@ -14,20 +14,10 @@ $(document).ready(function() {
       window.history.replaceState({}, document.title, url.pathname + url.search);
     }
   }
-
-  // --- URL base del backend en Railway ---
-  const API_URL = "https://bd-production-38ba.up.railway.app/";
-
-
+  
   // --- Handler AJAX para verificar cédula ---
   $('#formVerificar').on('submit', function(e) {
     e.preventDefault();
-
-    const cedula = $('#cedula').val().trim();
-    if (cedula === '') {
-      $('#mensaje').text('Por favor, ingrese una cédula.').css('color', 'red');
-      return;
-    }
 
     $.ajax({
       url: `${API_URL}/verificar.php`, // 🔹 apunta a tu backend en Railway
