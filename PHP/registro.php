@@ -1,10 +1,4 @@
 <?php 
-header('Access-Control-Allow-Origin: https://mubc2026.netlify.app'); 
-
-// Necesitas esto si usas peticiones POST (como tu AJAX)
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    require 'conn.php';
 
