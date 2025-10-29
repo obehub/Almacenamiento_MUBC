@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Si es administrador
             $response['admin'] = true;
             $response['mensaje'] = "Redirigiendo al acceso de administrador...";
-            $response['redirect'] = 'admin_login.html';
+            $response['redirect'] = 'login_admin.html';
         } else {
             // Verificar si está en la tabla de registro normal
             $query_registro = "SELECT * FROM registro WHERE cedula = '$cedula' LIMIT 1";
