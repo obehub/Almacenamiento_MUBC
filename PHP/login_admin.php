@@ -1,12 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: https://mubc2026.netlify.app'); 
-
-// Necesitas esto si usas peticiones POST (como tu AJAX)
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-// login_admin.php
-// Recibe 'usuario' y 'password' por POST, verifica contra la base de datos
-// Si las credenciales son válidas redirige a ../admin.html, si no vuelve a ../login_admin.html?error=1
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     // Sólo aceptar POST
@@ -28,7 +20,7 @@ if ($usuario === '' || $password === '') {
 // --------- Suposición razonable: existe una tabla llamada `admins` con columnas `usuario` y `password` ---------
 // Si su proyecto usa otro nombre de tabla o columnas, cambiar la consulta abajo.
 
-$stmt = mysqli_prepare($conexion, "SELECT password FROM administradores WHERE usuario = ? LIMIT 1");
+$stmt = mysqli_prepare($conn, "SELECT password FROM administradores WHERE usuario = ? LIMIT 1");
 if (!$stmt) {
     // Error de preparación: no exponer detalles en producción
     header('Location: ../login_admin.html?error=1');
@@ -42,7 +34,7 @@ mysqli_stmt_store_result($stmt);
 if (mysqli_stmt_num_rows($stmt) === 0) {
     // Usuario no existe
     mysqli_stmt_close($stmt);
-    mysqli_close($conexion);
+    mysqli_close($conn);
     header('Location: ../login_admin.html?error=1');
     exit;
 }
@@ -74,7 +66,7 @@ if ($authenticated) {
     exit;
 } else {
     // Credenciales inválidas
-    mysqli_close($conexion);
+    mysqli_close($conn);
     header('Location: ../login_admin.html?error=1');
     exit;
 }
