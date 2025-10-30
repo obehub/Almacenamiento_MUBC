@@ -1,66 +1,52 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    // NUEVO: Obtener la referencia al campo de cédula
-    const cedulaInput = document.getElementById('cedula'); 
+  const form = document.getElementById('formAdmin');
+  const cedulaInput = document.getElementById('cedula');
 
-    // --- 1. Función para formatear la cédula automáticamente (xxx-xxxxxxx-x) ---
-    if (cedulaInput) {
-        cedulaInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/[^0-9]/g, ''); // Limpiar el valor, dejando solo dígitos
-            let formattedValue = '';
+  // --- Formatear cédula automáticamente ---
+  if (cedulaInput) {
+    cedulaInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/[^0-9]/g, '');
+      let formatted = '';
 
-            // Aplicar el formato: xxx-xxxxxxx-x
-            if (value.length > 0) {
-                // Primer guion después del tercer dígito
-                formattedValue += value.substring(0, 3);
-            }
-            if (value.length > 3) {
-                formattedValue += '-' + value.substring(3, 10);
-            }
-            if (value.length > 10) {
-                formattedValue += '-' + value.substring(10, 11);
-            }
+      if (value.length > 0) formatted += value.substring(0, 3);
+      if (value.length > 3) formatted += '-' + value.substring(3, 10);
+      if (value.length > 10) formatted += '-' + value.substring(10, 11);
 
-            e.target.value = formattedValue;
-        });
-        
-        // Opcional: Limitar la longitud máxima (13 caracteres para el patrón con guiones)
-        cedulaInput.setAttribute('maxlength', '13');
-    }
-    // ------------------------------------------------------------------------
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const usuario = document.getElementById('usuario').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        // NUEVO: Obtener el valor del campo de cédula (ya estará formateado)
-        const cedula = cedulaInput ? cedulaInput.value : ''; 
-
-        const formData = new FormData();
-        formData.append('usuario', usuario);
-        formData.append('email', email);
-        formData.append('password', password);
-        // NUEVO: Añadir la cédula al FormData
-        formData.append('cedula', cedula); 
-
-        fetch('../PHP/add_admin.php', {
-    method: 'POST',
-    body: formData
-})
-
-        .then(response => response.json())
-        .then(data => {
-            if(data.success){
-                alert('Administrador agregado correctamente');
-                form.reset();
-            }else{
-                alert('Error: ' + (data.message || 'No se pudo agregar el administrador.'));
-            }
-        })
-        .catch(error => {
-            alert('Error en la solicitud');
-        });
+      e.target.value = formatted;
     });
+  }
+
+  // --- Envío del formulario ---
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const usuario = document.getElementById('usuario').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const cedula = cedulaInput.value.trim();
+
+    const formData = new FormData();
+    formData.append('usuario', usuario);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('cedula', cedula);
+
+    // ✅ Ajustar la ruta según tu estructura
+    fetch('./PHP/add_admin.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert('✅ ' + data.message);
+        form.reset();
+      } else if (data.message.includes('registro')) {
+        alert('⚠️ Esta cédula no existe en la tabla de registro. No puedes agregar este administrador.');
+      } else {
+        alert('❌ ' + data.message);
+      }
+    })
+    .catch(() => alert('Error al enviar los datos al servidor.'));
+  });
 });
