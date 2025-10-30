@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    $referido = isset($_POST['rf_por']) ? mysqli_real_escape_string($conexion, $_POST['rf_por']) : '';
 
    // Insert usando sentencia preparada para mayor seguridad
-   $stmt = mysqli_prepare($conexion, "INSERT INTO registro (nombre, apellido, cedula, telefono, lugar, mesa, rf_por, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)");
+   $stmt = mysqli_prepare($conn, "INSERT INTO registro (nombre, apellido, cedula, telefono, lugar, mesa, rf_por, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)");
    if ($stmt) {
       mysqli_stmt_bind_param($stmt, 'sssssss', $nombre, $apellido, $cedula, $telefono, $lugar, $mesa, $referido);
       if (mysqli_stmt_execute($stmt)) {
@@ -25,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
       mysqli_stmt_close($stmt);
    } else {
-      echo 'Error en la preparación de la consulta: ' . mysqli_error($conexion);
+      echo 'Error en la preparación de la consulta: ' . mysqli_error($conn);
    }
 
-   mysqli_close($conexion);
+   mysqli_close($conn);
 
 }
 ?>
