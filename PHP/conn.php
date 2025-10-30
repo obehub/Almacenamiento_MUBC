@@ -6,7 +6,7 @@ $password = "070911";
 $database = "mubc_base";
 
 // Crear conexión
-$conexion = mysqli_connect($host, $root, $password, $database);
+$conn = mysqli_connect($host, $root, $password, $database);
 
 // Verificar conexión
 if (!$conexion) {
