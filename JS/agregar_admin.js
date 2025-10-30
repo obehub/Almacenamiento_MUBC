@@ -45,10 +45,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // NUEVO: Añadir la cédula al FormData
         formData.append('cedula', cedula); 
 
-        fetch('./PHP/add_admin.php', {
-            method: 'POST',
-            body: formData
-        })
+        fetch('../PHP/add_admin.php', {
+    method: 'POST',
+    body: formData
+})
+
         .then(response => response.json())
         .then(data => {
             if(data.success){
