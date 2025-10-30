@@ -1,52 +1,29 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('formAdmin');
-  const cedulaInput = document.getElementById('cedula');
 
-  // --- Formatear cédula automáticamente ---
-  if (cedulaInput) {
-    cedulaInput.addEventListener('input', function(e) {
-      let value = e.target.value.replace(/[^0-9]/g, '');
-      let formatted = '';
-
-      if (value.length > 0) formatted += value.substring(0, 3);
-      if (value.length > 3) formatted += '-' + value.substring(3, 10);
-      if (value.length > 10) formatted += '-' + value.substring(10, 11);
-
-      e.target.value = formatted;
-    });
-  }
-
-  // --- Envío del formulario ---
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const usuario = document.getElementById('usuario').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
-    const cedula = cedulaInput.value.trim();
+    const datos = new FormData(form);
 
-    const formData = new FormData();
-    formData.append('usuario', usuario);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('cedula', cedula);
+    try {
+      const response = await fetch('./PHP/agregar_admin.php', {
+        method: 'POST',
+        body: datos
+      });
 
-    // ✅ Ajustar la ruta según tu estructura
-    fetch('PHP/add_admin.php', {
-      method: 'POST',
-      body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        alert('✅ ' + data.message);
+      const result = await response.json();
+
+      if (result.success) {
+        alert(result.message);
         form.reset();
-      } else if (data.message.includes('registro')) {
-        alert('⚠️ Esta cédula no existe en la tabla de registro. No puedes agregar este administrador.');
       } else {
-        alert('❌ ' + data.message);
+        alert(result.message);
       }
-    })
-    .catch(() => alert('Error al enviar los datos al servidor.'));
+
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Hubo un problema al enviar los datos.');
+    }
   });
 });
