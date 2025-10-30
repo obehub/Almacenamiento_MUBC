@@ -1,13 +1,15 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
+// Solo aceptar solicitudes POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-	echo json_encode(['success' => false, 'message' => 'Método no permitido']);
-	exit;
+    echo json_encode(['success' => false, 'message' => 'Método no permitido']);
+    exit;
 }
 
-require __DIR__ . '/conn.php';
+require __DIR__ . '/conn.php'; // 🔹 corregido con la barra
 
+// Obtener y limpiar los datos
 $usuario = isset($_POST['usuario']) ? trim($_POST['usuario']) : '';
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
@@ -15,86 +17,73 @@ $cedula = isset($_POST['cedula']) ? trim($_POST['cedula']) : '';
 
 // Validaciones básicas
 if ($usuario === '' || $password === '' || $email === '' || $cedula === '') {
-	echo json_encode(['success' => false, 'message' => 'Faltan campos obligatorios']);
-	exit;
+    echo json_encode(['success' => false, 'message' => 'Faltan campos obligatorios']);
+    exit;
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	echo json_encode(['success' => false, 'message' => 'Email inválido']);
-	exit;
+    echo json_encode(['success' => false, 'message' => 'Email inválido']);
+    exit;
 }
 
-// --- NUEVA LÓGICA: Verificar que la CÉDULA exista en la tabla 'usuarios' ---
-$checkUserSql = "SELECT id FROM usuarios WHERE cedula = ? LIMIT 1";
-$stmtUser = mysqli_prepare($conn, $checkUserSql);
-if (!$stmtUser) {
-	echo json_encode(['success' => false, 'message' => 'Error en la base de datos (preparación de verificación de usuario)']);
-	exit;
+// 🔹 1. Verificar que la cédula exista en la tabla 'registro'
+$checkRegistroSql = "SELECT id FROM registro WHERE cedula = ? LIMIT 1";
+$stmtRegistro = mysqli_prepare($conn, $checkRegistroSql);
+if (!$stmtRegistro) {
+    echo json_encode(['success' => false, 'message' => 'Error al preparar la verificación de cédula en registro']);
+    exit;
 }
 
-mysqli_stmt_bind_param($stmtUser, 's', $cedula);
-mysqli_stmt_execute($stmtUser);
-mysqli_stmt_store_result($stmtUser);
+mysqli_stmt_bind_param($stmtRegistro, 's', $cedula);
+mysqli_stmt_execute($stmtRegistro);
+mysqli_stmt_store_result($stmtRegistro);
 
-if (mysqli_stmt_num_rows($stmtUser) === 0) {
-	mysqli_stmt_close($stmtUser);
-	echo json_encode(['success' => false, 'message' => 'La cédula no está registrada en la tabla de usuarios.']);
-	exit;
+if (mysqli_stmt_num_rows($stmtRegistro) === 0) {
+    mysqli_stmt_close($stmtRegistro);
+    echo json_encode(['success' => false, 'message' => 'La cédula no está registrada en la tabla "registro".']);
+    exit;
 }
-mysqli_stmt_close($stmtUser);
-// --- FIN de la NUEVA LÓGICA ---
+mysqli_stmt_close($stmtRegistro);
 
-// Evitar duplicados por usuario o email en la tabla 'administradores'
-// La cédula ya no necesita ser verificada contra 'administradores' si el requisito es que YA sea usuario.
-$checkAdminSql = "SELECT id FROM administradores WHERE usuario = ? LIMIT 1";
+// 🔹 2. Verificar duplicados en la tabla 'administradores'
+$checkAdminSql = "SELECT id FROM administradores WHERE usuario = ? OR email = ? OR cedula = ? LIMIT 1";
 $stmtAdmin = mysqli_prepare($conn, $checkAdminSql);
 if (!$stmtAdmin) {
-	echo json_encode(['success' => false, 'message' => 'Error en la base de datos (preparación de verificación de administrador)']);
-	exit;
+    echo json_encode(['success' => false, 'message' => 'Error al preparar la verificación de administrador']);
+    exit;
 }
 
-mysqli_stmt_bind_param($stmtAdmin, 'ss', $usuario, $email);
+mysqli_stmt_bind_param($stmtAdmin, 'sss', $usuario, $email, $cedula);
 mysqli_stmt_execute($stmtAdmin);
 mysqli_stmt_store_result($stmtAdmin);
 
 if (mysqli_stmt_num_rows($stmtAdmin) > 0) {
-	mysqli_stmt_close($stmtAdmin);
-	echo json_encode(['success' => false, 'message' => 'El nombre de usuario o el email ya están registrados como administrador.']);
-	exit;
+    mysqli_stmt_close($stmtAdmin);
+    echo json_encode(['success' => false, 'message' => 'El usuario, email o cédula ya están registrados como administrador.']);
+    exit;
 }
 mysqli_stmt_close($stmtAdmin);
 
+// 🔹 3. Hashear la contraseña de forma segura
+$hash = password_hash($password, PASSWORD_DEFAULT);
 
-// Hashear la contraseña
-if (function_exists('password_hash')) {
-	$hash = password_hash($password, PASSWORD_DEFAULT);
-} else {
-	// Fallback muy básico (no recomendado en producción)
-	$hash = sha1($password);
-}
-
-// Inserción en la tabla 'administradores'
+// 🔹 4. Insertar el nuevo administrador
 $insertSql = "INSERT INTO administradores (usuario, password, email, cedula) VALUES (?, ?, ?, ?)";
 $stmt = mysqli_prepare($conn, $insertSql);
 if (!$stmt) {
-	echo json_encode(['success' => false, 'message' => 'Error en la base de datos (preparación insert)']);
-	exit;
+    echo json_encode(['success' => false, 'message' => 'Error al preparar la inserción de datos']);
+    exit;
 }
 
-mysqli_stmt_bind_param($stmt, 'ssss', $usuario, $email, $hash, $cedula);
+mysqli_stmt_bind_param($stmt, 'ssss', $usuario, $hash, $email, $cedula);
 $ok = mysqli_stmt_execute($stmt);
+
 if ($ok) {
-	mysqli_stmt_close($stmt);
-	mysqli_close($conn);
-	echo json_encode(['success' => true, 'message' => 'Administrador agregado correctamente']);
-	exit;
+    echo json_encode(['success' => true, 'message' => 'Administrador agregado correctamente']);
 } else {
-	$err = mysqli_error($conn);
-	mysqli_stmt_close($stmt);
-	mysqli_close($conn);
-	// No exponer $err en producción
-	echo json_encode(['success' => false, 'message' => 'No se pudo agregar el administrador', 'error' => $err]);
-	exit;
+    echo json_encode(['success' => false, 'message' => 'Error al guardar el administrador en la base de datos']);
 }
 
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
 ?>
