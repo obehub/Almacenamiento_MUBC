@@ -22,7 +22,7 @@ if ($usuario === '' || $email === '' || $cedula === '' || $password === '') {
 
 // 1️⃣ Verificar si la cédula está en la tabla de registro
 $sql_check = "SELECT * FROM registro WHERE cedula = ?";
-$stmt_check = $conexion->prepare($sql_check);
+$stmt_check = $conn->prepare($sql_check);
 $stmt_check->bind_param("s", $cedula);
 $stmt_check->execute();
 $result_check = $stmt_check->get_result();
@@ -34,7 +34,7 @@ if ($result_check->num_rows === 0) {
 
 // 2️⃣ Verificar si ya existe un administrador con esa cédula
 $sql_exists = "SELECT * FROM administradores WHERE cedula = ?";
-$stmt_exists = $conexion->prepare($sql_exists);
+$stmt_exists = $conn->prepare($sql_exists);
 $stmt_exists->bind_param("s", $cedula);
 $stmt_exists->execute();
 $result_exists = $stmt_exists->get_result();
@@ -46,7 +46,7 @@ if ($result_exists->num_rows > 0) {
 
 // 3️⃣ Insertar nuevo administrador
 $sql_insert = "INSERT INTO administradores (usuario, email, cedula, password) VALUES (?, ?, ?, ?)";
-$stmt_insert = $conexion->prepare($sql_insert);
+$stmt_insert = $conn->prepare($sql_insert);
 $stmt_insert->bind_param("ssss", $usuario, $email, $cedula, $password);
 
 if ($stmt_insert->execute()) {
@@ -58,4 +58,4 @@ if ($stmt_insert->execute()) {
 $stmt_check->close();
 $stmt_exists->close();
 $stmt_insert->close();
-$conexion->close();
+$conn->close();
