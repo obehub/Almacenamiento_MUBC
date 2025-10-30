@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 	exit;
 }
 
-require __DIR__ . 'conn.php';
+require __DIR__ . '/conn.php';
 
 $usuario = isset($_POST['usuario']) ? trim($_POST['usuario']) : '';
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
