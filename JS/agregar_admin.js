@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     formData.append('cedula', cedula);
 
     // ✅ Ajustar la ruta según tu estructura
-    fetch('../PHP/add_admin.php', {
+    fetch('PHP/add_admin.php', {
       method: 'POST',
       body: formData
     })
