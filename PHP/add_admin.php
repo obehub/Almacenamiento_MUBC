@@ -46,7 +46,7 @@ mysqli_stmt_close($stmtUser);
 
 // Evitar duplicados por usuario o email en la tabla 'administradores'
 // La cédula ya no necesita ser verificada contra 'administradores' si el requisito es que YA sea usuario.
-$checkAdminSql = "SELECT id FROM administradores WHERE usuario = ? OR email = ? LIMIT 1";
+$checkAdminSql = "SELECT id FROM administradores WHERE usuario = ? LIMIT 1";
 $stmtAdmin = mysqli_prepare($conn, $checkAdminSql);
 if (!$stmtAdmin) {
 	echo json_encode(['success' => false, 'message' => 'Error en la base de datos (preparación de verificación de administrador)']);
