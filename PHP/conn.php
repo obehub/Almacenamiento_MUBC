@@ -9,7 +9,7 @@ $database = "mubc_base";
 $conn = mysqli_connect($host, $root, $password, $database);
 
 // Verificar conexión
-if (!$conexion) {
+if (!$conn) {
     die("Error al conectar con la base de datos: " . mysqli_connect_error());
 }
 ?>

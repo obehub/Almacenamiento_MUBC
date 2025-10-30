@@ -1,6 +1,9 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-require 'conn.php'; // Tu conexión existente
+require 'conn.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+// Tu conexión existente
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Método no permitido']);

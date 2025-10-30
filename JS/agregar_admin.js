@@ -7,10 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const datos = new FormData(form);
 
     try {
-      const response = await fetch('./PHP/agregar_admin.php', {
-        method: 'POST',
-        body: datos
-      });
+      const response = await fetch('../PHP/agregar_admin.php', { method: 'POST', body: datos });
+
 
       const result = await response.json();
 
