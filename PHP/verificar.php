@@ -3,12 +3,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require 'conn.php';
     
     if (isset($_POST['cedula'])) {
-        $cedula = mysqli_real_escape_string($conexion, $_POST['cedula']);
+        $cedula = mysqli_real_escape_string($conn, $_POST['cedula']);
         $response = array();
 
         // --- Verificar si está en la tabla de administradores ---
         $query_admin = "SELECT * FROM administradores WHERE cedula = '$cedula' LIMIT 1";
-        $resultado_admin = mysqli_query($conexion, $query_admin);
+        $resultado_admin = mysqli_query($conn, $query_admin);
 
         if (mysqli_num_rows($resultado_admin) > 0) {
             // Si es administrador
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             // Verificar si está en la tabla de registro normal
             $query_registro = "SELECT * FROM registro WHERE cedula = '$cedula' LIMIT 1";
-            $resultado_registro = mysqli_query($conexion, $query_registro);
+            $resultado_registro = mysqli_query($conn, $query_registro);
 
             if (mysqli_num_rows($resultado_registro) > 0) {
                 $response['existe'] = true;
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ]);
     }
 
-    mysqli_close($conexion);
+    mysqli_close($conn);
 }
 ?>
 

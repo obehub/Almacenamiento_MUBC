@@ -90,7 +90,7 @@ $total_paginas = ceil($total_registros / $registros_por_pagina);
                     <?php
                     $consulta = "SELECT * FROM registro $where 
                                 LIMIT $inicio, $registros_por_pagina";
-                    $resultado = mysqli_query($conexion, $consulta);
+                    $resultado = mysqli_query($conn, $consulta);
 
                     while ($fila = mysqli_fetch_assoc($resultado)) {
                         // Normalizar id para JavaScript
@@ -303,4 +303,4 @@ $total_paginas = ceil($total_registros / $registros_por_pagina);
     </script>
 </body>
 </html>
-<?php mysqli_close($conexion); ?>
+<?php mysqli_close($conn); ?>
